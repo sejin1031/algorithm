@@ -5,5 +5,5 @@ public class Test2 {
         Scanner scn = new Scanner(System.in);
         String name = scn.next();
         System.out.println(name);
-    }
-}
+        }
+        }
