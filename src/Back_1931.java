@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
 import static java.lang.System.*;
@@ -5,45 +7,37 @@ import static java.lang.System.*;
 public class Back_1931 {
     public static void main(String... args){
         Scanner scn = new Scanner(in);
-        int N = scn.nextInt();
-        int[][] times = new int[N][2];
-        int count = 0;
-        int max = 0;
-        for(int i = 0;i<N;i++){
-            times[i][0] = scn.nextInt();
-            times[i][1] = scn.nextInt();
-            if(times[i][1]>max) max = times[i][1];
+            int N = scn.nextInt();
+            Pair[] times = new Pair[N];
+            for(int i = 0;i<N;i++){
+                times[i] = new Pair(scn.nextInt(),scn.nextInt());
         }
-        sort(times);
-        Boolean[] sch = new Boolean[max+1];
-        for(int i = 0;i<sch.length;i++) sch[i]= false;
-        for(int i = 0;i<N;i++){
-            count++;
-            for(int j = times[i][0]; j<=times[i][1]; j++){
-                if(sch[j]){
-                    for(int k = j-1;k>=times[i][0];k--){
-                        sch[k] = false;
-                    }
-                    count--;
-                    break;
-                }
-                else
-                    sch[j] = true;
+        Arrays.sort(times,Pair.comparator);
+        int count = 1;
+        int end = times[0].e;
+
+        for(int i = 1;i<N;i++){
+            if(times[i].s >= end){
+                end = times[i].e;
+                count++;
             }
         }
         out.println(count);
-
-
-
     }
-    public static void sort(int[][] times){
-        for(int i = 0;i<times.length;i++){
-            for(int j = i+1;j<times.length;j++){
-                    if(times[i][0]> times[j][0]){
-                        int[] tmp = times[i]; times[i] = times[j]; times[j] = tmp;
-                    }
-            }
+
+    static class Pair{
+        int s, e;
+        Pair(int s, int e){
+            this.s = s;
+            this.e = e;
         }
-        return;
+        static Comparator<Pair> comparator = (o1, o2) -> {
+            if(o1.e>o2.e) return 1;
+            else if(o1.e==o2.e){
+                if(o1.s>o2.s) return 1;
+                else return  -1;
+        }
+            else return -1;
+        };
     }
 }
