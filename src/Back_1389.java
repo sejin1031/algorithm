@@ -37,7 +37,7 @@ public class Back_1389 {
                 if (kebin[i][k] == 0) continue;
                 for (int j = 0; j < N; j++) {
                     if (kebin[k][j] == 0) continue;
-                    kebin[i][k] = Math.min(kebin[i][j], kebin[i][k] + kebin[k][j]);
+                    kebin[i][j] = Math.min(kebin[i][j], kebin[i][k] + kebin[k][j]);
                 }
             }
         }
