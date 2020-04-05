@@ -1,6 +1,8 @@
 
 public class Test {
     public static void main(String... args){
-        System.out.println("Hello");
+        String str = "234";
+        int a = Integer.parseInt(str);
+        System.out.print(a);
     }
 }
