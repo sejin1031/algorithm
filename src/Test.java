@@ -1,8 +1,8 @@
+import java.util.Arrays;
 
 public class Test {
     public static void main(String... args){
-        String str = "234";
-        int a = Integer.parseInt(str);
-        System.out.print(a);
+        int[] nums = {1,2,3,4,5,6,7,8,9,10};
+        System.out.print(Arrays.binarySearch(nums,-1));
     }
 }
